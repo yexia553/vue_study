@@ -1,14 +1,15 @@
 <template>
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-        :collapse="isCollapse">
+        :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <h3>通用后台管理</h3>
 
-        <el-menu-item v-for="item in noChildren" :index="item.path" :key="item.path">
+        <el-menu-item v-for="item in noChildren" :index="item.path" :key="item.path" @click="clickMenu(item)">
             <!-- 下面两行代码在引用属性的方式上有所不同，注意 -->
             <i :class="`el-icon-${item.icon }`"></i>
             <span slot="title">{{item.label}}</span>
         </el-menu-item>
 
-        <el-submenu v-for="item in hasChildren" :index="item.path" :key="item.path">
+        <el-submenu v-for="item in hasChildren" :index="item.path" :key="item.path" @click="clickMenu(item)">
             <template slot="title">
                 <i :class="`el-icon-${item.icon}`"></i>
                 <span slot="title">{{item.label}}</span>
@@ -20,10 +21,19 @@
     </el-menu>
 </template>
 
-<style>
+<style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
+}
+.el-menu {
+    height: 100%;
+    border: none;
+    h3 {
+        color: #fff;
+        text-align: center;
+        line-height: 48px;
+    }
 }
 </style>
 
@@ -84,7 +94,12 @@ export default {
         },
         handleClose(key, keyPath) {
             console.log(key, keyPath);
-        }
+        },
+        clickMenu(item) {
+            this.$router.push({
+                name: item.name,
+            })
+        },
     },
     computed: {
         noChildren() {
