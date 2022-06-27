@@ -1,6 +1,8 @@
 <template>
-    <el-container style="height: 100%;">
-        <el-aside width="auto">Aside</el-aside>
+    <el-container style="height: 100%">
+        <el-aside width="auto">
+            <common-aside></common-aside>
+        </el-aside>
         <el-container>
             <el-header>Header</el-header>
             <el-main>Main</el-main>
@@ -9,8 +11,12 @@
 </template>
 
 <script>
+import CommonAside from '../src/components/CommonAside.vue'
 export default {
     name: 'home',
+    components: {
+        CommonAside,
+    },
     data() {
         return {}
     }
