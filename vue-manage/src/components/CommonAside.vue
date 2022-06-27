@@ -3,13 +3,13 @@
         :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         <h3>{{ isCollapse ? "后台" : "通用后台管理" }}</h3>
 
-        <el-menu-item v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
+        <el-menu-item v-for="item in noChildren" :index="item.path" :key="item.path" @click="clickMenu(item)">
             <!-- 下面两行代码在引用属性的方式上有所不同，注意 -->
             <i :class="`el-icon-${item.icon }`"></i>
             <span slot="title">{{item.label}}</span>
         </el-menu-item>
 
-        <el-submenu v-for="item in hasChildren" :key="item.path" @click="clickMenu(item)">
+        <el-submenu v-for="item in hasChildren" :index="item.path"  :key="item.path" @click="clickMenu(item)">
             <template slot="title">
                 <i :class="`el-icon-${item.icon}`"></i>
                 <span slot="title">{{item.label}}</span>
