@@ -1,8 +1,8 @@
 <template>
-<!-- 主体部分一定放在header标签内，不然不能运行，目前还不清楚原因，有可能是因为这一部分最终是在el-header中调用的，所以这里也要放在header标签中 -->
+    <!-- 主体部分一定放在header标签内，不然不能运行，目前还不清楚原因，有可能是因为这一部分最终是在el-header中调用的，所以这里也要放在header标签中 -->
     <header>
         <div class="l-content">
-            <el-button plain icon="el-icon-menu" size="mini"></el-button>
+            <el-button @click="handleMenu"  plain icon="el-icon-menu" size="mini"></el-button>
             <h3>首页</h3>
         </div>
         <div class="r-content">
@@ -26,6 +26,11 @@ export default {
         return {
             userImg: require("../assets/images/user.png")
         }
+    },
+    methods: {
+        handleMenu() {
+            this.$store.commit('collapseMenu')
+        },
     },
 }
 </script>
