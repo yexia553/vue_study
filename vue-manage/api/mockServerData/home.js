@@ -19,7 +19,7 @@ export default {
             )
         }
         return {
-            code: 20000,
+            code: 200,
             data: {
                 // 饼图
                 videoData: [
