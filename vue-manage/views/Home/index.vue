@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { getData } from '../../api/data.js'
+
 export default {
     name: 'home',
     data() {
@@ -125,6 +127,15 @@ export default {
                 },
             ],
         }
-    }
+    },
+
+    mounted() {
+      getData().then (res => {
+        const {code, data} = res.data
+        if (code === 200) {
+            alert(data)
+        }
+      })
+    },
 }
 </script>
