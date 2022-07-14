@@ -29,7 +29,9 @@ export default {
     },
     methods: {
         changeMenu(item) {
-
+            this.$router.push({
+                name: item.name
+            })
         },
         handleClose(tag, index) {
 
