@@ -25,6 +25,9 @@ export default {
             } else {
                 currentMenu = null
             }
+        },
+        closeTab(state, index) {
+            state.tabsList.splice(index, 1)
         }
     }
 }
