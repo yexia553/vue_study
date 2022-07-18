@@ -23,7 +23,7 @@ export default {
                     state.tabsList.push(val)
                 }
             } else {
-                currentMenu = null
+                state.currentMenu = null
             }
         },
         closeTab(state, index) {
