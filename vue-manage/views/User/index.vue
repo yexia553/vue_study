@@ -17,16 +17,21 @@
                 <el-button type="primary" @click="getList">搜索</el-button>
             </common-form>
         </div>
+        <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config">
+        </common-table>
     </div>
 </template>
 
 <script>
 import CommonForm from '../../src/components/CommonForm.vue'
+import CommonTable from '../../src/components/CommonTable.vue'
+import { getUser } from '../../api/data.js'
 
 export default {
     name: 'user',
     components: {
         CommonForm,
+        CommonTable,
     },
     data() {
         return {
@@ -86,10 +91,52 @@ export default {
             searchForm: {
                 keyword: ''
             },
+            tableData: [],
+            tableLabel: [
+                {
+                    prop: 'name',
+                    label: '姓名',
+                },
+                {
+                    prop: 'age',
+                    label: '年龄',
+                },
+                {
+                    prop: 'sexLabel',
+                    label: '性别',
+                },
+                {
+                    prop: 'birth',
+                    label: '出生日期',
+                    width: 200
+                },
+                {
+                    prop: 'addr',
+                    label: '地址',
+                    width: 320
+                },
+            ],
+            config: {
+                page: 1,
+                total: 30,
+            },
         }
     },
     methods: {
-        confirm() {},
+        confirm() {
+            if (this.operateType === "edit") {
+                this.$http.post('/user/edit', this.operateForm).then(res =>{
+                    console.log(res)
+                    this.isShow = false
+                })
+            } else {
+                this.$http.post('/user/add', this.operateForm).then(res => {
+                    console.log(res)
+                    this.isShow = false
+                })
+            }
+
+        },
         addUser() {
             this.isShow = true
             this.operateType = 'add'
@@ -101,7 +148,49 @@ export default {
                 sex: '',
             }
         },
-        getList() {},
+        getList(name = '') {
+            this.config.loading = true
+            name ? (this.config.page = 1) : ''
+            getUser({
+                page: this.config.page,
+                name
+            }).then(({ data: res }) => {
+                this.tableData = res.list.map(item => {
+                    item.sexLabel = item.sex === 0 ? '女' : '男'
+                    return item
+                })
+                this.config.total = res.count
+                this.config.loading = true
+            })
+        },
+        editUser(row) {
+            this.isShow = true
+            this.operateType = 'edit'
+            console.log(row)
+            this.operateForm = row
+        },
+        delUser(row) {
+            this.$confirm('此操作将永久删除此组件，是否继续？', '提示', {
+                confirmButtonText: "确认",
+                cancelButtonText: "取消",
+                type: "warning",
+            }).then(() => {
+                const id = row.id
+                this.$http.post('/user/del', {
+                    id: id
+                }).then(res => {
+                    console.log(res)
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功'
+                    })
+                    this.getList()
+                })
+            })
+        },
+    },
+    created() {
+        this.getList()
     }
 }
 </script>
