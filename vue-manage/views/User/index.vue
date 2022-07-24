@@ -17,7 +17,7 @@
                 <el-button type="primary" @click="getList">搜索</el-button>
             </common-form>
         </div>
-        <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config">
+        <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config" @edit="editUser" @del="delUser" @changePage="getList()">
         </common-table>
     </div>
 </template>
@@ -128,11 +128,14 @@ export default {
                 this.$http.post('/user/edit', this.operateForm).then(res =>{
                     console.log(res)
                     this.isShow = false
+                    this.getList()
                 })
             } else {
                 this.$http.post('/user/add', this.operateForm).then(res => {
+                    alert("Add a new user")
                     console.log(res)
                     this.isShow = false
+                    this.getList()
                 })
             }
 
