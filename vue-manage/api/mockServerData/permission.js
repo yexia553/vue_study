@@ -16,21 +16,21 @@ export default {
                             name: 'home',
                             label: '首页',
                             icon: 's-home',
-                            url: 'home/index'
+                            url: 'Home/index'
                         },
                         {
                             path: '/mall',
                             name: 'mall',
                             label: '商品管理',
                             icon: 'video-play',
-                            url: 'mall/index.vue'
+                            url: 'Mall/index.vue'
                         },
                         {
                             path: '/user',
                             name: 'user',
                             label: '用户管理',
                             icon: 'user',
-                            url: 'user/index'
+                            url: 'User/index'
                         },
                         {
                             label: '其他',
@@ -42,14 +42,14 @@ export default {
                                     name: 'page1',
                                     label: '页面1',
                                     icon: 'setting',
-                                    url: 'other/pageOne.vue'
+                                    url: 'Other/pageOne.vue'
                                 },
                                 {
                                     path: '/page2',
                                     name: 'page2',
                                     label: '页面2',
                                     icon: 'setting',
-                                    url: 'other/pageTwo.vue'
+                                    url: 'Other/pageTwo.vue'
                                 }
                             ]
                         }
@@ -58,7 +58,7 @@ export default {
                     message: '获取成功'
                 }
             }
-        } else if (username === '1' && password === '1') {
+        } else if (username === 'test' && password === 'test') {
             return {
                 code: 200,
                 data: {
@@ -68,14 +68,14 @@ export default {
                             name: 'home',
                             label: '首页',
                             icon: 's-home',
-                            url: 'home/index'
+                            url: 'Home/index'
                         },
                         {
                             path: '/mall',
                             name: 'mall',
                             label: '商品管理',
                             icon: 'video-play',
-                            url: 'mall/index'
+                            url: 'Mall/index'
                         }
                     ],
                     token: Mock.Random.guid(),

@@ -42,48 +42,48 @@ export default {
     data() {
         return {
             menu: [
-                {
-                    path: '/',
-                    name: 'home',
-                    label: '首页',
-                    icon: 's-home',
-                    url: '/Home/Home'
-                },
-                {
-                    path: '/mall',
-                    name: 'mall',
-                    label: '商品管理',
-                    icon: 'video-play',
-                    url: '/MallManage/MallManage'
-                },
-                {
-                    path: '/user',
-                    name: 'user',
-                    label: '用户管理',
-                    icon: 'user',
-                    url: '/UserManage/UserManage'
-                },
-                {
-                    label: '其它',
-                    name: 'other',
-                    icon: 'location',
-                    children: [
-                        {
-                            path: '/pageOne',
-                            name: 'pageOne',
-                            label: '页面1',
-                            icon: 'setting',
-                            url: '/Other/PageOne'
-                        },
-                        {
-                            path: '/pageTwo',
-                            name: 'pageTwo',
-                            label: '页面2',
-                            icon: 'setting',
-                            url: '/Other/PageTwo'
-                        },
-                    ]
-                },
+                // {
+                //     path: '/',
+                //     name: 'home',
+                //     label: '首页',
+                //     icon: 's-home',
+                //     url: '/Home/Home'
+                // },
+                // {
+                //     path: '/mall',
+                //     name: 'mall',
+                //     label: '商品管理',
+                //     icon: 'video-play',
+                //     url: '/MallManage/MallManage'
+                // },
+                // {
+                //     path: '/user',
+                //     name: 'user',
+                //     label: '用户管理',
+                //     icon: 'user',
+                //     url: '/UserManage/UserManage'
+                // },
+                // {
+                //     label: '其它',
+                //     name: 'other',
+                //     icon: 'location',
+                //     children: [
+                //         {
+                //             path: '/pageOne',
+                //             name: 'pageOne',
+                //             label: '页面1',
+                //             icon: 'setting',
+                //             url: '/Other/PageOne'
+                //         },
+                //         {
+                //             path: '/pageTwo',
+                //             name: 'pageTwo',
+                //             label: '页面2',
+                //             icon: 'setting',
+                //             url: '/Other/PageTwo'
+                //         },
+                //     ]
+                // },
             ]
         };
     },
@@ -103,13 +103,16 @@ export default {
     },
     computed: {
         noChildren() {
-            return this.menu.filter(item => !item.children)
+            return this.syncMenu.filter(item => !item.children)
         },
         hasChildren() {
-            return this.menu.filter(item => item.children)
+            return this.syncMenu.filter(item => item.children)
         },
         isCollapse() {
             return this.$store.state.tab.isCollapse
+        },
+        syncMenu() {
+            return this.$store.state.tab.menu
         }
     }
 }

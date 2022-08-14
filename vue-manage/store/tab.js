@@ -1,4 +1,4 @@
-import Cookies from "js-cookie"
+import Cookie from "js-cookie"
 
 
 export default {
@@ -35,40 +35,42 @@ export default {
         },
         setMenu(state, val) {
             state.menu = val
-            console.log("set menu 1")
-            Cookies.set('menu', JSON.stringify(val))
-            console.log("set menu 2")
+            console.log('val', val)
+            Cookie.set('menu', JSON.stringify(val))
         },
         clearMenu(state) {
             state.menu = []
-            Cookies.remove('menu')
+            Cookie.remove('menu')
         },
         addMenu(state, router) {
             // 把获取到菜单数据转换成路由
-            if (!Cookies.get('menu')) {
+            if (!Cookie.get('menu')) {
                 return
             }
-            console.log("add menu 1")
-            console.log("menu", Cookies.get('menu'))
-            const menu = JSON.parse(Cookies.get('menu'))
-            console.log("add menu 2")
+            const menu = JSON.parse(Cookie.get('menu'))
             state.menu = menu
-            const menuArray = []
+            const menuArray = [
+                {
+                    path: '/',
+                    name: 'Main',
+                    component: () => import("../views/Main.vue"),
+                    children: []
+                }
+            ]
             menu.forEach(item => {
                 if (item.children) {
                     item.children = item.children.map(item => {
                         item.component = () => import(`../views/${item.url}`)
+                        return item
                     })
-                    menuArray.push(...item.children)
+                    menuArray[0].children.push(...item.children)
                 } else {
                     item.component = () => import(`../views/${item.url}`)
-                    menuArray.push(item)
+                    menuArray[0].children.push(item)
                 }
             })
-            menuArray.foreach(item => {
-                router.addRoute('Main', item)
-            })
-
+            console.log('menuArray', menuArray)
+            router.addRoutes(menuArray)
         }
     }
 }

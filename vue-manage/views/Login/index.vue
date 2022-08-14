@@ -6,7 +6,12 @@
             </el-input>
         </el-form-colum>
         <el-form-colum label="密码" prop="password" label-width="80px">
-            <el-input type="password" auto-complete="off" v-model="form.password" placeholder="请输入密码">
+            <el-input 
+            type="password" 
+            auto-complete="off" 
+            v-model="form.password" 
+            placeholder="请输入密码"
+            @keyup.enter.native="login">
             </el-input>
         </el-form-colum>
         <el-form-colum class="login-submit">
@@ -46,19 +51,13 @@ export default {
             // this.$router.push({name:'home'})
 
             getMenu(this.form).then(res => {
-                console.log('1')
                 if (res.data.code === 200){
-                    console.log("2")
+                    console.log('data', res.data)
                     this.$store.commit('clearMenu')
-                    console.log("3")
-                    this.$store.commit('setMenu', res.data.menu)
-                    console.log("4")
-                    this.$store.commit('setToken', res.data.token)
-                    console.log("5")
+                    this.$store.commit('setMenu', res.data.data.menu)
+                    this.$store.commit('setToken', res.data.data.token)
                     this.$store.commit('addMenu', this.$router)
-                    console.log("6")
                     this.$router.push({name:'home'})
-                    console.log("7")
                 }else {
                     this.$message.warning("登录失败！")
                 }
