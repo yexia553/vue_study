@@ -2,16 +2,20 @@
     <!-- 主体部分一定放在header标签内，不然不能运行，目前还不清楚原因，有可能是因为这一部分最终是在el-header中调用的，所以这里也要放在header标签中 -->
     <header>
         <div class="l-content">
-            <el-button @click="handleMenu"  plain icon="el-icon-menu" size="mini"></el-button>
-            <!-- <h3>首页</h3> -->
+            <el-button @click="handleMenu" icon="el-icon-menu" size="mini"></el-button>
+            <!-- 将访问过的路径设置成面包屑 -->
             <el-breadcrumb separator="|">
-                <el-breadcrumb-item v-for="item in tags" :key="item.path" :to="{path: item.path}">
+                <el-breadcrumb-item 
+                v-for="item in tags" 
+                :key="item.path" 
+                :to="{path: item.path}"
+                >
                     {{item.label}}
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="r-content">
-            <el-dropdown trigger="click" size="mini">
+            <el-dropdown size="mini">
                 <span>
                     <img class="user" :src="userImg" alt="用户头像">
                 </span>
@@ -35,6 +39,7 @@ export default {
     },
     methods: {
         handleMenu() {
+            // 翻转侧边栏收起与展开的状态
             this.$store.commit('collapseMenu')
         },
         logout() {
