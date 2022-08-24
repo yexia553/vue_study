@@ -1,6 +1,12 @@
 <template>
-    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-        :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+    <el-menu 
+    default-active="1-4-1" 
+    class="el-menu-vertical-demo" 
+    :collapse="isCollapse" 
+    background-color="#545c64" 
+    text-color="#fff" 
+    active-text-color="#ffd04b"
+    >
         <h3>{{ isCollapse ? "后台" : "通用后台管理" }}</h3>
 
         <el-menu-item v-for="item in noChildren" :index="item.path" :key="item.path" @click="clickMenu(item)">
@@ -88,12 +94,6 @@ export default {
         };
     },
     methods: {
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath);
-        },
         clickMenu(item) {
             this.$router.push({
                 name: item.name,
