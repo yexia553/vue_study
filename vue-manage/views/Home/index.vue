@@ -22,6 +22,7 @@
                 </el-table>
             </el-card>
         </el-col>
+        
         <el-col :span="16" style="margin-top: 20px;">
             <div class="num">
                 <el-card v-for="item in countData" :key="item.name" :body-style="{display:'flex', padding: 0}">
@@ -59,40 +60,40 @@ export default {
             userImg: require('../../src/assets/images/user.png'),
             tableData: [
                 {
-                name: 'oppo',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
+                    name: 'oppo',
+                    todayBuy: 100,
+                    monthBuy: 300,
+                    totalBuy: 800
                 },
                 {
-                name: 'vivo',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
+                    name: 'vivo',
+                    todayBuy: 100,
+                    monthBuy: 300,
+                    totalBuy: 800
                 },
                 {
-                name: '苹果',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
+                    name: '苹果',
+                    todayBuy: 100,
+                    monthBuy: 300,
+                    totalBuy: 800
                 },
                 {
-                name: '小米',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
+                    name: '小米',
+                    todayBuy: 100,
+                    monthBuy: 300,
+                    totalBuy: 800
                 },
                 {
-                name: '三星',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
+                    name: '三星',
+                    todayBuy: 100,
+                    monthBuy: 300,
+                    totalBuy: 800
                 },
                 {
-                name: '魅族',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
+                    name: '魅族',
+                    todayBuy: 100,
+                    monthBuy: 300,
+                    totalBuy: 800
                 }
             ],
             tableLabel: {
