@@ -1,75 +1,83 @@
 <template>
     <el-aside width="200px">
-        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-            <el-radio-button :label="false">expand</el-radio-button>
-            <el-radio-button :label="true">collapse</el-radio-button>
-        </el-radio-group>
-        <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
-            @close="handleClose">
-            <el-sub-menu index="1">
+        <el-menu 
+        class="el-menu-vertical-demo"
+        background-color="#545c64" 
+        text-color="#fff"
+        :collapse=false
+        active-text-color="#ffd04b">
+            <el-menu-item :index="item.path+''" v-for="item in noChildern()" :key="item.label">
+                <!-- 在vue3中动态引用icon图标 -->
+                <component class="icons" :is="item.icon"></component>
+                <!-- <template #title>{{item.label}}</template> -->
+                <span>{{item.label}}</span>
+            </el-menu-item>
+            <el-sub-menu :index="item.path+''" v-for="item in hasChildern()" :key="item.label">
                 <template #title>
-                    <el-icon>
-                        <location />
-                    </el-icon>
-                    <span>Navigator One</span>
+                    <component class="icons" :is="item.icon"></component>
+                    <span>{{item.label}}</span>
                 </template>
-                <el-menu-item-group>
-                    <template #title><span>Group One</span></template>
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item two</el-menu-item>
+                <el-menu-item-group v-for="(subItem, subIndex) in item.children" :index="subItem.path+''" :key="subItem.label">
+                    <el-menu-item :index="subIndex+''">{{subItem.label}}</el-menu-item>
                 </el-menu-item-group>
-                <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="1-4">
-                    <template #title><span>item four</span></template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
-                </el-sub-menu>
             </el-sub-menu>
-            <el-menu-item index="2">
-                <el-icon>
-                    <icon-menu />
-                </el-icon>
-                <template #title>Navigator Two</template>
-            </el-menu-item>
-            <el-menu-item index="3" disabled>
-                <el-icon>
-                    <document />
-                </el-icon>
-                <template #title>Navigator Three</template>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <el-icon>
-                    <setting />
-                </el-icon>
-                <template #title>Navigator Four</template>
-            </el-menu-item>
         </el-menu>
     </el-aside>
 </template>
 
 
-<script lang="ts" setup>
-import { ref } from 'vue'
-import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
-} from '@element-plus/icons-vue'
-
-const isCollapse = ref(true)
-const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+<script>
+export default {
+    setup() {
+        const list = [
+            {
+                path: '/user',
+                name: 'user',
+                label: '用户管理',
+                icon: 'user',
+                url: '/UserManage/UserManage'
+            },
+            {
+                label: '其它',
+                name: 'other',
+                icon: 'location',
+                path: '/other',
+                children: [
+                    {
+                        path: '/pageOne',
+                        name: 'pageOne',
+                        label: '页面1',
+                        icon: 'setting',
+                        url: '/Other/PageOne'
+                    },
+                    {
+                        path: '/pageTwo',
+                        name: 'pageTwo',
+                        label: '页面2',
+                        icon: 'setting',
+                        url: '/Other/PageTwo'
+                    },
+                ]
+            },
+        ];
+        const noChildern = () => {
+            return list.filter((item) => !item.children)
+        };
+        const hasChildern = () => {
+            return list.filter((item) => item.children)
+        }
+        return {
+            noChildern,
+            hasChildern
+        }
+    }
 }
 </script>
 
-<style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
+<style lang="less" scoped>
+.icons {
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
 }
 </style>
