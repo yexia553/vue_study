@@ -1,8 +1,8 @@
 <template>
     <el-container class="common-layout">
-        <common-aside />
+        <el-aside><common-aside /></el-aside>
         <el-container class="r-container">
-            <common-header />
+            <el-header><common-header /></el-header>
             <el-main>
                 <router-view />
             </el-main>
@@ -23,6 +23,9 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.common-layout {
+    height: 100vh;
+}
 .r-container {
     display: flex;
     flex-wrap: wrap;
