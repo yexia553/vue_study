@@ -1,7 +1,8 @@
 @import "./base.css";
 
 #app {
-  max-width: 1280px;
+    /* max-width导致页面不能全屏显示 */
+  /* max-width: 1280px; */
   margin: 0;
   padding: 0;
   font-weight: normal;
@@ -27,8 +28,13 @@ a,
   }
 
   #app {
-    display: grid;
+    /* grid布局会导致页面在纵向上只能显示一部分 */
+    /* display: grid; */
+    display: flex;
     grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    /* padding会导致页面在左右两侧有白边 */
+    /* padding: 0 2rem; */
+    height: 100vh;
+    width: 100%;
   }
 }
