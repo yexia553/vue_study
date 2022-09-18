@@ -30,8 +30,7 @@ a,
   #app {
     /* grid布局会导致页面在纵向上只能显示一部分 */
     /* display: grid; */
-    display: flex;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     /* padding会导致页面在左右两侧有白边 */
     /* padding: 0 2rem; */
     height: 100vh;

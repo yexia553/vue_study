@@ -80,4 +80,7 @@ export default {
     height: 18px;
     margin-right: 4px;
 }
+.el-menu{
+    border-right: none;
+}
 </style>
