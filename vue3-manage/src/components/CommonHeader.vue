@@ -50,8 +50,10 @@ header {
     background: #333;
 }
 .l-content {
+    display: flex;
+    align-items: center;
     .el-button{
-        margin-right: 4px;
+        margin-right: 16px;
     }
     h3{
         color: #fff;
