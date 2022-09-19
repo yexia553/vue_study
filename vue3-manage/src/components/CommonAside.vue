@@ -1,10 +1,11 @@
 <template>
-    <el-aside width="200px">
+    <el-aside :width="$store.state.collapse ? '60px' : '180px'">
         <el-menu 
         class="el-menu-vertical-demo"
         background-color="#545c64" 
         text-color="#fff"
-        :collapse=false
+        :collapse="$store.state.collapse"
+        :collapse-transition="false"
         active-text-color="#ffd04b">
             <el-menu-item :index="item.path+''" v-for="item in noChildern()" :key="item.label">
                 <!-- 在vue3中动态引用icon图标 -->

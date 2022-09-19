@@ -1,7 +1,7 @@
 <template>
     <el-header>
         <div class="l-content">
-            <el-button size="small">
+            <el-button size="small" plain @click="handleCollapse">
                 <el-icon :size="20">
                     <Menu />
                 </el-icon>
@@ -25,19 +25,26 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue-demi';
+import { useStore } from 'vuex';
+export default defineComponent ({
     setup() {
-        const getImgSrc = () => {
+        let s = useStore();
+        let getImgSrc = () => {
             // 参考https://cn.vitejs.dev/guide/assets.html#new-url-url-import-meta-url
-            console.log(import.meta.url)
-            console.log(new URL("../assets/images/user.png", import.meta.url))
+            // console.log(import.meta.url)
+            // console.log(new URL("../assets/images/user.png", import.meta.url))
             return new URL("../assets/images/user.png", import.meta.url).href;
         };
+        let handleCollapse = () => {
+            s.commit('updateCollapse');
+        };
         return {
-            getImgSrc
+            getImgSrc,
+            handleCollapse,
         }
     }
-}
+})
 
 </script>
 
