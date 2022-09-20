@@ -1,9 +1,8 @@
 <template>
     <div class="common-layout">
         <el-container>
-            <el-aside width="200px">
-                <common-aside />
-            </el-aside>
+            <!-- 不要嵌套两层el-aside -->
+            <common-aside />
             <el-container class="r-container">
                 <el-header>
                     <common-header />

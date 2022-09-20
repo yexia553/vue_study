@@ -29,7 +29,7 @@ import { defineComponent } from 'vue-demi';
 import { useStore } from 'vuex';
 export default defineComponent ({
     setup() {
-        let s = useStore();
+        let store = useStore();
         let getImgSrc = () => {
             // 参考https://cn.vitejs.dev/guide/assets.html#new-url-url-import-meta-url
             // console.log(import.meta.url)
@@ -37,7 +37,7 @@ export default defineComponent ({
             return new URL("../assets/images/user.png", import.meta.url).href;
         };
         let handleCollapse = () => {
-            s.commit('updateCollapse');
+            store.commit('updateCollapse');
         };
         return {
             getImgSrc,
