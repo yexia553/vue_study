@@ -7,7 +7,8 @@
         :collapse="$store.state.collapse"
         :collapse-transition="false"
         active-text-color="#ffd04b">
-            <el-menu-item :index="item.path+''" v-for="item in noChildern()" :key="item.label">
+            <h3>{{$store.state.collapse ? '后台' : '后台管理'}}</h3>
+            <el-menu-item :index="item.path+''" v-for="item in noChildern()" :key="item.label" @click="handleClick(item)">
                 <!-- 在vue3中动态引用icon图标 -->
                 <component class="icons" :is="item.icon"></component>
                 <!-- <template #title>{{item.label}}</template> -->
@@ -18,8 +19,8 @@
                     <component class="icons" :is="item.icon"></component>
                     <span>{{item.label}}</span>
                 </template>
-                <el-menu-item-group v-for="(subItem, subIndex) in item.children" :index="subItem.path+''" :key="subItem.label">
-                    <el-menu-item :index="subIndex+''">{{subItem.label}}</el-menu-item>
+                <el-menu-item-group v-for="(subItem, subIndex) in item.children" :index="subItem.path+''" :key="subItem.label" >
+                    <el-menu-item :index="subIndex+''" @click="handleClick(subItem)">{{subItem.label}}</el-menu-item>
                 </el-menu-item-group>
             </el-sub-menu>
         </el-menu>
@@ -28,6 +29,7 @@
 
 
 <script>
+import { useRouter } from 'vue-router'
 export default {
     setup() {
         const list = [
@@ -36,7 +38,7 @@ export default {
                 name: 'user',
                 label: '用户管理',
                 icon: 'user',
-                url: '/UserManage/UserManage'
+                url: '/user'
             },
             {
                 label: '其它',
@@ -45,18 +47,18 @@ export default {
                 path: '/other',
                 children: [
                     {
-                        path: '/pageOne',
-                        name: 'pageOne',
+                        path: '/other/page1',
+                        name: 'page1',
                         label: '页面1',
                         icon: 'setting',
-                        url: '/Other/PageOne'
+                        url: '/other/page1'
                     },
                     {
-                        path: '/pageTwo',
-                        name: 'pageTwo',
+                        path: '/other/page2',
+                        name: 'page2',
                         label: '页面2',
                         icon: 'setting',
-                        url: '/Other/PageTwo'
+                        url: '/other/page2'
                     },
                 ]
             },
@@ -66,10 +68,17 @@ export default {
         };
         const hasChildern = () => {
             return list.filter((item) => item.children)
-        }
+        };
+        const router = useRouter()
+        const handleClick = (item) => {
+            router.push({
+                name: item.name
+            })
+        };
         return {
             noChildern,
-            hasChildern
+            hasChildern,
+            handleClick,
         }
     }
 }
@@ -83,5 +92,10 @@ export default {
 }
 .el-menu{
     border-right: none;
+    h3{
+        color: #fff;
+        text-align: center;
+        margin-top: 10px;
+    }
 }
 </style>
