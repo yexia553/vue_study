@@ -14,20 +14,14 @@
                     <p>上次登录地点：上海</p>
                 </div>
             </el-card>
-            <el-card shadow="hover" style="margin-top:20px; height:30px;">
+            <el-card shadow="hover" style="margin-top:20px;">
                 <el-table :data="tableData" style="width: 100%">
-                    <el-table-column v-for="(val, key) in tableLabel" :key="key" :label="val" :prop="key"></el-table-column>
+                    <el-table-column prop="name" label="课程"></el-table-column>
+                    <el-table-column prop="todayBuy" label="今日购买"></el-table-column>
+                    <el-table-column prop="monthBuy" label="本月购买"></el-table-column>
+                    <el-table-column prop="totalBuy" label="总购买"></el-table-column>
                 </el-table>
             </el-card>
-        </el-col>
-        <el-col :span="16" style="margin-top: 20px;">
-            <el-card shadow="never" :body-style="{display: 'flex', padding: '0',}">
-                <el-card class="slaes-info" v-for="item in countData" :key="item.name" >
-                    <!-- <i class="icon" :class="`el-icon-${item.icon}`" :style="{background: item.color}"></i> -->
-                    <component class="icons" :is="item.icon"></component>
-                </el-card>
-            </el-card>
-
         </el-col>
     </el-row>
 </template>
@@ -77,13 +71,6 @@ export default defineComponent ({
             }
         ]
 
-        const tableLabel = {
-            name: '课程',
-            todayBuy: '今日购买',
-            monthBuy: '本月购买',
-            totalBuy: '总购买',
-        }
-
         const countData = [
             {
                 name: "今日支付订单",
@@ -130,7 +117,6 @@ export default defineComponent ({
         return {
             getImgSrc,
             tableData,
-            tableLabel,
             countData,
         }
     }
@@ -159,8 +145,6 @@ export default defineComponent ({
         margin-left: 30px;
         margin-top: 15px;
         line-height: 200%;
-    }
-    .slaes-info{
     }
 }
 </style>
