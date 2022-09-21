@@ -63,18 +63,22 @@ export default {
                 ]
             },
         ];
+
         const noChildern = () => {
             return list.filter((item) => !item.children)
         };
+
         const hasChildern = () => {
             return list.filter((item) => item.children)
         };
+
         const router = useRouter()
         const handleClick = (item) => {
             router.push({
                 name: item.name
             })
         };
+        
         return {
             noChildern,
             hasChildern,
