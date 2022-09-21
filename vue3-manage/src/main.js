@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 import './assets/main.css'
 import store from './store/index.js'
 import router from './router/index.js'
+import './api/mock.js'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 

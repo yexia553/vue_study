@@ -27,49 +27,53 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import axios from 'axios'
 
 
 export default defineComponent ({
     setup() {
-        const tableData = [
-            {
-                name: 'Python',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
-            },
-            {
-                name: 'C',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
-            },
-            {
-                name: 'Java',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
-            },
-            {
-                name: 'Golang',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
-            },
-            {
-                name: 'Vue',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
-            },
-            {
-                name: 'React',
-                todayBuy: 100,
-                monthBuy: 300,
-                totalBuy: 800
-            }
-        ]
+        // const tableData = [
+        //     {
+        //         name: 'Python',
+        //         todayBuy: 100,
+        //         monthBuy: 300,
+        //         totalBuy: 800
+        //     },
+        //     {
+        //         name: 'C',
+        //         todayBuy: 100,
+        //         monthBuy: 300,
+        //         totalBuy: 800
+        //     },
+        //     {
+        //         name: 'Java',
+        //         todayBuy: 100,
+        //         monthBuy: 300,
+        //         totalBuy: 800
+        //     },
+        //     {
+        //         name: 'Golang',
+        //         todayBuy: 100,
+        //         monthBuy: 300,
+        //         totalBuy: 800
+        //     },
+        //     {
+        //         name: 'Vue',
+        //         todayBuy: 100,
+        //         monthBuy: 300,
+        //         totalBuy: 800
+        //     },
+        //     {
+        //         name: 'React',
+        //         todayBuy: 100,
+        //         monthBuy: 300,
+        //         totalBuy: 800
+        //     }
+        // ]
+
+        // vue3中实现js中的数据双向绑定需要使用ref
+        let tableData = ref([])
 
         const countData = [
             {
@@ -114,6 +118,19 @@ export default defineComponent ({
             return new URL("../../assets/images/user.png", import.meta.url).href;
         }
 
+        const getTableData = async () => {
+            await axios.get('/home/getData').then((res) => {
+                // console.log(res);
+                if (res.status === 200){
+                    // .value是为了实现数据双向绑定而需要的
+                    tableData.value = res.data.tableData;
+                }
+                
+            })
+        } 
+        onMounted(() => {
+            getTableData()
+        })
         return {
             getImgSrc,
             tableData,
