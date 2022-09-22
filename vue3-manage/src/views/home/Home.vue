@@ -27,7 +27,12 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from 'vue'
+import { 
+    defineComponent, 
+    getCurrentInstance, 
+    onMounted, 
+    ref 
+} from 'vue'
 import axios from 'axios'
 
 
@@ -118,16 +123,24 @@ export default defineComponent ({
             return new URL("../../assets/images/user.png", import.meta.url).href;
         }
 
+        // const getTableData = async () => {
+        //     await axios.get('/home/getData').then((res) => {
+        //         console.log(res);
+        //         if (res.status === 200){
+        //             // .value是为了实现数据双向绑定而需要的
+        //             tableData.value = res.data.tableData;
+        //         }
+
+        //     })
+        // }
+
+        // vue3中全局使用二次封装的axios的方式
+        const { proxy } = getCurrentInstance()
         const getTableData = async () => {
-            await axios.get('/home/getData').then((res) => {
-                // console.log(res);
-                if (res.status === 200){
-                    // .value是为了实现数据双向绑定而需要的
-                    tableData.value = res.data.tableData;
-                }
-                
-            })
-        } 
+            let res = await proxy.$api.getHomeTableData();
+            console.log(res)
+        }
+
         onMounted(() => {
             getTableData()
         })
