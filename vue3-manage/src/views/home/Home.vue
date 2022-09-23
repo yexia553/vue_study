@@ -138,7 +138,7 @@ export default defineComponent ({
         const { proxy } = getCurrentInstance()
         const getTableData = async () => {
             let res = await proxy.$api.getHomeTableData();
-            console.log(res)
+            tableData.value = res.data.tableData
         }
 
         onMounted(() => {

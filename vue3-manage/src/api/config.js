@@ -8,11 +8,11 @@ const env = import.meta.env.MDOE || 'dev'
 const envConfig = {
     dev:{
         baseApi: 'dev.example.com/api',
-        mockApi: 'http://localhost:5173/'
+        mockApi: ''
     },
     test:{
         baseApi: 'test.example.com/api',
-        mockApi: 'http://localhost:5173/'
+        mockApi: ''
     },
     prod:{
         baseApi: 'example.com/api',
