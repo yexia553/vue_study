@@ -23,6 +23,25 @@
                 </el-table>
             </el-card>
         </el-col>
+
+        <el-col :span="16" style="margin-top: 20px;">
+            <div class="nums">
+                <el-card 
+                :body-style="{display: 'flex', padding: 0}"
+                v-for="item in countData"
+                :key="item.name">
+                     <component 
+                        class="icons" 
+                        :is="item.icon"
+                        :style="{background: item.color}"
+                    ></component>
+                    <div class="detail">
+                        <p class="txt">{{item.name}}</p>
+                        <p class="num">￥：{{item.value}}</p>
+                    </div>
+                </el-card>
+            </div>
+        </el-col>
     </el-row>
 </template>
 
@@ -84,37 +103,37 @@ export default defineComponent ({
             {
                 name: "今日支付订单",
                 value: 1234,
-                icon: "success",
+                icon: "SuccessFilled",
                 color: "#2ec7c9",
             },
             {
                 name: "今日收藏订单",
                 value: 210,
-                icon: "star-on",
+                icon: "StarFilled",
                 color: "#ffb980",
             },
             {
                 name: "今日未支付订单",
                 value: 1234,
-                icon: "s-goods",
+                icon: "GoodsFilled",
                 color: "#5ab1ef",
             },
             {
                 name: "本月支付订单",
                 value: 1234,
-                icon: "success",
+                icon: "SuccessFilled",
                 color: "#2ec7c9",
             },
             {
                 name: "本月收藏订单",
                 value: 210,
-                icon: "star-on",
+                icon: "StarFilled",
                 color: "#ffb980",
             },
             {
                 name: "本月未支付订单",
                 value: 1234,
-                icon: "s-goods",
+                icon: "GoodsFilled",
                 color: "#5ab1ef",
             },
         ]
@@ -175,6 +194,31 @@ export default defineComponent ({
         margin-left: 30px;
         margin-top: 15px;
         line-height: 200%;
+    }
+    .nums{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .el-card {
+            width: 31%;
+            margin-bottom: 20px;
+            .icons {
+                width: 24%
+            }
+            .detail {
+                margin-left: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .num{
+                    font-size: 26px;
+                }
+                .txt{
+                    color: #999;
+                    text-align: center;
+                }
+            }
+        }
     }
 }
 </style>
