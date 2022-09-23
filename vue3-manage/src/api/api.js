@@ -13,5 +13,13 @@ export default {
             data: params,
             mock: true
         })
+    },
+    getHomeCountData(params) {
+        return request({
+            url: '/home/getCountData',
+            method: 'get',
+            data: params,
+            mock: true
+        })
     }
 }

@@ -99,44 +99,45 @@ export default defineComponent ({
         // vue3中实现js中的数据双向绑定需要使用ref
         let tableData = ref([])
 
-        const countData = [
-            {
-                name: "今日支付订单",
-                value: 1234,
-                icon: "SuccessFilled",
-                color: "#2ec7c9",
-            },
-            {
-                name: "今日收藏订单",
-                value: 210,
-                icon: "StarFilled",
-                color: "#ffb980",
-            },
-            {
-                name: "今日未支付订单",
-                value: 1234,
-                icon: "GoodsFilled",
-                color: "#5ab1ef",
-            },
-            {
-                name: "本月支付订单",
-                value: 1234,
-                icon: "SuccessFilled",
-                color: "#2ec7c9",
-            },
-            {
-                name: "本月收藏订单",
-                value: 210,
-                icon: "StarFilled",
-                color: "#ffb980",
-            },
-            {
-                name: "本月未支付订单",
-                value: 1234,
-                icon: "GoodsFilled",
-                color: "#5ab1ef",
-            },
-        ]
+        // const countData = [
+        //     {
+        //         name: "今日支付订单",
+        //         value: 1234,
+        //         icon: "SuccessFilled",
+        //         color: "#2ec7c9",
+        //     },
+        //     {
+        //         name: "今日收藏订单",
+        //         value: 210,
+        //         icon: "StarFilled",
+        //         color: "#ffb980",
+        //     },
+        //     {
+        //         name: "今日未支付订单",
+        //         value: 1234,
+        //         icon: "GoodsFilled",
+        //         color: "#5ab1ef",
+        //     },
+        //     {
+        //         name: "本月支付订单",
+        //         value: 1234,
+        //         icon: "SuccessFilled",
+        //         color: "#2ec7c9",
+        //     },
+        //     {
+        //         name: "本月收藏订单",
+        //         value: 210,
+        //         icon: "StarFilled",
+        //         color: "#ffb980",
+        //     },
+        //     {
+        //         name: "本月未支付订单",
+        //         value: 1234,
+        //         icon: "GoodsFilled",
+        //         color: "#5ab1ef",
+        //     },
+        // ]
+        let countData = ref([])
 
         let getImgSrc = () => {
             return new URL("../../assets/images/user.png", import.meta.url).href;
@@ -160,8 +161,14 @@ export default defineComponent ({
             tableData.value = res.data.tableData
         }
 
+        const getCountData = async () => {
+            let res = await proxy.$api.getHomeCountData();
+            countData.value = res.data.countData
+        }
+
         onMounted(() => {
-            getTableData()
+            getTableData(),
+            getCountData()
         })
         return {
             getImgSrc,
