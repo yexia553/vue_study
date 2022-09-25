@@ -41,6 +41,11 @@
                     </div>
                 </el-card>
             </div>
+            <el-card style="height: 280px;">
+                <div class="echart" style="height: 280px;">
+
+                </div>
+            </el-card>
         </el-col>
     </el-row>
 </template>

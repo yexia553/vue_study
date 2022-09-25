@@ -21,5 +21,13 @@ export default {
             data: params,
             mock: true
         })
+    },
+    getEchartData(params) {
+        return request({
+            url: '/home/getEchartData',
+            method: 'get',
+            data: params,
+            mock: true
+        })
     }
 }
