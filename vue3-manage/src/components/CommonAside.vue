@@ -94,7 +94,8 @@ export default {
     height: 18px;
     margin-right: 4px;
 }
-.el-menu{
+.el-menu-vertical-demo{
+    width: 100%;
     border-right: none;
     h3{
         color: #fff;
