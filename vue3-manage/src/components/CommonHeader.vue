@@ -6,7 +6,7 @@
                     <Menu />
                 </el-icon>
             </el-button>
-            <h3>首页</h3>
+            <h3><common-tag /></h3>
         </div>
         <div class="r-content">
             <el-dropdown>
@@ -27,9 +27,13 @@
 <script>
 import { defineComponent } from 'vue-demi';
 import { useStore } from 'vuex';
+import CommonTag from './CommonTags.vue';
 export default defineComponent ({
+    components: {
+        CommonTag,
+    },
     setup() {
-        let store = useStore();
+        const store = useStore();
         let getImgSrc = () => {
             // 参考https://cn.vitejs.dev/guide/assets.html#new-url-url-import-meta-url
             // console.log(import.meta.url)

@@ -30,8 +30,11 @@
 
 <script>
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
 export default {
     setup() {
+        const router = useRouter()
+        const store = useStore()
         const list = [
             {
                 path: '/user',
@@ -72,11 +75,12 @@ export default {
             return list.filter((item) => item.children)
         };
 
-        const router = useRouter()
         const handleClick = (item) => {
             router.push({
                 name: item.name
-            })
+            });
+            // 通过vuex将点击过的侧边存储到store中，用于在header中显示
+            store.commit('addMenus', item)
         };
         
         return {

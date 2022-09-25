@@ -15,8 +15,5 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
+app.use(ElementPlus).use(router).use(store).mount('#app')
 app.config.globalProperties.$api = api
-app.use(ElementPlus)
-app.use(router)
-app.use(store)
-app.mount('#app')
