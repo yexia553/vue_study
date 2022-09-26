@@ -4,6 +4,7 @@
     v-for="item in getStoredMenus()"
     :key = item.name
     @click = handleTagClick(item)
+    @close = handleTagClose(item)
     >
         {{item.label}}
     </el-tag>
@@ -25,9 +26,13 @@ export default defineComponent({
                 name: item.name
             })
         };
+        const handleTagClose = (item) => {
+            store.state.storedMenus.splice(store.state.storedMenus.indexOf(item), 1)
+        }   
         return {
             getStoredMenus,
             handleTagClick,
+            handleTagClose,
         }
     }
 })
