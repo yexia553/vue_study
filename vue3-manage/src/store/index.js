@@ -5,6 +5,7 @@ export default createStore({
     state: {
         collapse: true,
         storedMenus: [],
+        menus: [],
     },
     mutations: {
         updateCollapse(state, payload) {
@@ -14,5 +15,8 @@ export default createStore({
             // TODO, 要判断存在与否
             state.storedMenus.push(val)
         },
+        updateMenus(state, val) {
+            state.menus = val
+        }
     }
 })

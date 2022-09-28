@@ -29,5 +29,13 @@ export default {
             data: params,
             mock: true
         })
+    },
+    getAsideMenu(params) {
+        return request({
+            url: '/home/getAsideMenu',
+            method: 'post',
+            data: params,
+            mock: true
+        })
     }
 }

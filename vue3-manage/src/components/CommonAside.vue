@@ -35,44 +35,44 @@ export default {
     setup() {
         const router = useRouter()
         const store = useStore()
-        const list = [
-            {
-                path: '/user',
-                name: 'user',
-                label: '用户管理',
-                icon: 'user',
-                url: '/user'
-            },
-            {
-                label: '其它',
-                name: 'other',
-                icon: 'location',
-                path: '/other',
-                children: [
-                    {
-                        path: '/other/page1',
-                        name: 'page1',
-                        label: '页面1',
-                        icon: 'setting',
-                        url: '/other/page1'
-                    },
-                    {
-                        path: '/other/page2',
-                        name: 'page2',
-                        label: '页面2',
-                        icon: 'setting',
-                        url: '/other/page2'
-                    },
-                ]
-            },
-        ];
+        // const list = [
+        //     {
+        //         path: '/user',
+        //         name: 'user',
+        //         label: '用户管理',
+        //         icon: 'user',
+        //         url: '/user'
+        //     },
+        //     {
+        //         label: '其它',
+        //         name: 'other',
+        //         icon: 'location',
+        //         path: '/other',
+        //         children: [
+        //             {
+        //                 path: '/other/page1',
+        //                 name: 'page1',
+        //                 label: '页面1',
+        //                 icon: 'setting',
+        //                 url: '/other/page1'
+        //             },
+        //             {
+        //                 path: '/other/page2',
+        //                 name: 'page2',
+        //                 label: '页面2',
+        //                 icon: 'setting',
+        //                 url: '/other/page2'
+        //             },
+        //         ]
+        //     },
+        // ];
 
         const noChildern = () => {
-            return list.filter((item) => !item.children)
+            return store.state.menus.filter((item) => !item.children)
         };
 
         const hasChildern = () => {
-            return list.filter((item) => item.children)
+            return store.state.menus.filter((item) => item.children)
         };
 
         const handleClick = (item) => {
