@@ -17,6 +17,14 @@ export default createStore({
         },
         updateMenus(state, val) {
             state.menus = val
-        }
+            localStorage.setItem('menus', JSON.stringify(state.menus))
+        },
+        setMenus(state) {
+            const menus = localStorage.getItem('menus') 
+            if (!menus) {
+                return
+            }
+            state.menus = JSON.parse(menus)
+        },
     }
 })
