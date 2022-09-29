@@ -5,7 +5,7 @@
             <el-input type="input" auto-complete="off" placeholder="请输入用户名" v-model="formData.username"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password" label-width="80px">
-            <el-input type="password" auto-complete="off" placeholder="请输入密码" v-model="formData.password"></el-input>
+            <el-input type="password" auto-complete="off" placeholder="请输入密码" v-model="formData.password" @keyup.enter.native="login()"></el-input>
         </el-form-item>
         <el-form-item class="login-submit">
             <el-button type="primary" class="login-submit" @click="login()">登录</el-button>
