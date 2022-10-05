@@ -68,6 +68,7 @@ export default {
         // ];
 
         const noChildern = () => {
+            console.log('menus', store.state.menus)
             return store.state.menus.filter((item) => !item.children)
         };
 
@@ -76,6 +77,8 @@ export default {
         };
 
         const handleClick = (item) => {
+            console.log('router name', item)
+            console.log('router', router.getRoutes())
             router.push({
                 name: item.name
             });

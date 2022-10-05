@@ -13,21 +13,21 @@ export default {
                         name: 'home',
                         label: '首页',
                         icon: 'house',
-                        url: 'Home/index'
+                        url: 'home/Home.vue'
                     },
                     {
                         path: '/mall',
                         name: 'mall',
                         label: '商品管理',
                         icon: 'video-play',
-                        url: 'Mall/index.vue'
+                        url: 'mall/Mall.vue'
                     },
                     {
                         path: '/user',
                         name: 'user',
                         label: '用户管理',
                         icon: 'user',
-                        url: 'User/index'
+                        url: 'user/User.vue'
                     },
                     {
                         label: '其他',
@@ -39,14 +39,14 @@ export default {
                                 name: 'page1',
                                 label: '页面1',
                                 icon: 'setting',
-                                url: 'Other/pageOne.vue'
+                                url: 'other/Page1.vue'
                             },
                             {
                                 path: '/page2',
                                 name: 'page2',
                                 label: '页面2',
                                 icon: 'setting',
-                                url: 'Other/pageTwo.vue'
+                                url: 'other/Page2.vue'
                             }
                         ]
                     }
@@ -69,7 +69,7 @@ export default {
                         name: 'mall',
                         label: '商品管理',
                         icon: 'video-play',
-                        url: 'Mall/index'
+                        url: 'mall/Mall.vue'
                     }
                 ],
                 token: Mock.Random.guid(),
