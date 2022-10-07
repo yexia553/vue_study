@@ -6,7 +6,9 @@
                     <Menu />
                 </el-icon>
             </el-button>
-            <h3><common-tag /></h3>
+            <h3>
+                <common-tag />
+            </h3>
         </div>
         <div class="r-content">
             <el-dropdown>
@@ -27,13 +29,14 @@
 <script>
 import { defineComponent } from 'vue-demi';
 import { useStore } from 'vuex';
+import store from '../store/index.js'
 import CommonTag from './CommonTags.vue';
-export default defineComponent ({
+export default defineComponent({
     components: {
         CommonTag,
     },
     setup() {
-        const store = useStore();
+        // const store = useStore();
         let getImgSrc = () => {
             // 参考https://cn.vitejs.dev/guide/assets.html#new-url-url-import-meta-url
             // console.log(import.meta.url)
@@ -60,16 +63,20 @@ header {
     width: 100%;
     background: #333;
 }
+
 .l-content {
     display: flex;
     align-items: center;
-    .el-button{
+
+    .el-button {
         margin-right: 16px;
     }
-    h3{
+
+    h3 {
         color: #fff;
     }
 }
+
 .r-content {
     .user {
         width: 40px;

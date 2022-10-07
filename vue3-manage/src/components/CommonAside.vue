@@ -1,14 +1,10 @@
 <template>
     <el-aside :width="$store.state.collapse ? '60px' : '180px'">
-        <el-menu 
-        class="el-menu-vertical-demo"
-        background-color="#545c64" 
-        text-color="#fff"
-        :collapse="$store.state.collapse"
-        :collapse-transition="false"
-        active-text-color="#ffd04b">
+        <el-menu class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff"
+            :collapse="$store.state.collapse" :collapse-transition="false" active-text-color="#ffd04b">
             <h3>{{$store.state.collapse ? '后台' : '后台管理'}}</h3>
-            <el-menu-item :index="item.path+''" v-for="item in noChildern()" :key="item.label" @click="handleClick(item)">
+            <el-menu-item :index="item.path+''" v-for="item in noChildern()" :key="item.label"
+                @click="handleClick(item)">
                 <!-- 在vue3中动态引用icon图标 -->
                 <component class="icons" :is="item.icon"></component>
                 <!-- <template #title>{{item.label}}</template> -->
@@ -19,7 +15,8 @@
                     <component class="icons" :is="item.icon"></component>
                     <span>{{item.label}}</span>
                 </template>
-                <el-menu-item-group v-for="(subItem, subIndex) in item.children" :index="subItem.path+''" :key="subItem.label" >
+                <el-menu-item-group v-for="(subItem, subIndex) in item.children" :index="subItem.path+''"
+                    :key="subItem.label">
                     <el-menu-item :index="subIndex+''" @click="handleClick(subItem)">{{subItem.label}}</el-menu-item>
                 </el-menu-item-group>
             </el-sub-menu>
@@ -30,11 +27,13 @@
 
 <script>
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
+import store from '../store/index.js'
 export default {
     setup() {
         const router = useRouter()
-        const store = useStore()
+        // const store = useStore()
+        console.log('common aside store', store)
         // const list = [
         //     {
         //         path: '/user',
@@ -68,7 +67,6 @@ export default {
         // ];
 
         const noChildern = () => {
-            console.log('menus', store.state.menus)
             return store.state.menus.filter((item) => !item.children)
         };
 
@@ -85,7 +83,7 @@ export default {
             // 通过vuex将点击过的侧边存储到store中，用于在header中显示
             store.commit('addMenus', item)
         };
-        
+
         return {
             noChildern,
             hasChildern,
@@ -101,10 +99,12 @@ export default {
     height: 18px;
     margin-right: 4px;
 }
-.el-menu-vertical-demo{
+
+.el-menu-vertical-demo {
     width: 100%;
     border-right: none;
-    h3{
+
+    h3 {
         color: #fff;
         text-align: center;
         margin-top: 10px;

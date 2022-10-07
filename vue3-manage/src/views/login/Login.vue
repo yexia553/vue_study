@@ -5,7 +5,7 @@
             <el-input type="input" auto-complete="off" placeholder="请输入用户名" v-model="formData.username"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password" label-width="80px">
-            <el-input type="password" auto-complete="off" placeholder="请输入密码" v-model="formData.password" @keyup.enter.native="login()"></el-input>
+            <el-input type="password" auto-complete="off" placeholder="请输入密码" v-model="formData.password"></el-input>
         </el-form-item>
         <el-form-item class="login-submit">
             <el-button type="primary" class="login-submit" @click="login()">登录</el-button>
@@ -19,14 +19,14 @@ import { defineComponent } from 'vue-demi';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { ElMessageBox } from 'element-plus';
+import store from '../../store/index.js';
 
 
 export default defineComponent({
     setup() {
-        const { proxy } = getCurrentInstance();
-        const store = useStore();
+        const { proxy } = getCurrentInstance()
+        // const store = useStore()
         const router = useRouter()
-        console.log(store)
         const formData = reactive({
             username: '',
             password: '',
@@ -34,13 +34,14 @@ export default defineComponent({
 
         let login = async () => {
             let res = await proxy.$api.getAsideMenu(formData);
-            if ( res.data.message === 'success' ) {
+            if (res.data.message === 'success') {
+                console.log(res.data.menu)
                 store.commit('updateMenus', res.data.menu)
-                console.log(res)
+                store.commit('setMenus', router)
                 console.log('after store commit')
                 console.log(store.state.menus)
                 router.push({
-                    name: 'home'
+                    name: 'main'
                 })
             } else {
                 ElMessageBox.alert('账号密码错误，请重试！')

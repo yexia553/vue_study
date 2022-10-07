@@ -1,11 +1,6 @@
 <template>
-    <el-tag 
-    closable 
-    v-for="item in getStoredMenus()"
-    :key = item.name
-    @click = handleTagClick(item)
-    @close = handleTagClose(item)
-    >
+    <el-tag closable v-for="item in getStoredMenus()" :key=item.name @click=handleTagClick(item)
+        @close=handleTagClose(item)>
         {{item.label}}
     </el-tag>
 </template>
@@ -14,9 +9,10 @@
 import { defineComponent } from 'vue-demi';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'
+import store from '../store/index.js'
 export default defineComponent({
     setup() {
-        const store = useStore();
+        // const store = useStore();
         const router = useRouter();
         const getStoredMenus = () => {
             return store.state.storedMenus
@@ -28,7 +24,7 @@ export default defineComponent({
         };
         const handleTagClose = (item) => {
             store.state.storedMenus.splice(store.state.storedMenus.indexOf(item), 1)
-        }   
+        }
         return {
             getStoredMenus,
             handleTagClick,
@@ -38,9 +34,8 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
-.el-tag{
+.el-tag {
     margin-left: 10px;
     cursor: pointer;
 }
-
 </style>
