@@ -26,15 +26,8 @@
 
         <el-col :span="16" style="margin-top: 20px;">
             <div class="nums">
-                <el-card 
-                :body-style="{display: 'flex', padding: 0}"
-                v-for="item in countData"
-                :key="item.name">
-                     <component 
-                        class="icons" 
-                        :is="item.icon"
-                        :style="{background: item.color}"
-                    ></component>
+                <el-card :body-style="{display: 'flex', padding: 0}" v-for="item in countData" :key="item.name">
+                    <component class="icons" :is="item.icon" :style="{background: item.color}"></component>
                     <div class="detail">
                         <p class="txt">{{item.name}}</p>
                         <p class="num">￥：{{item.value}}</p>
@@ -50,16 +43,16 @@
 </template>
 
 <script>
-import { 
-    defineComponent, 
-    getCurrentInstance, 
-    onMounted, 
-    ref 
+import {
+    defineComponent,
+    getCurrentInstance,
+    onMounted,
+    ref
 } from 'vue'
 import axios from 'axios'
 
 
-export default defineComponent ({
+export default defineComponent({
     setup() {
         // vue3中实现js中的数据双向绑定需要使用ref
         let tableData = ref([])
@@ -84,6 +77,7 @@ export default defineComponent ({
         const { proxy } = getCurrentInstance()
         const getTableData = async () => {
             let res = await proxy.$api.getHomeTableData();
+            console.log('res', res)
             tableData.value = res.data.tableData
         }
 
@@ -94,7 +88,7 @@ export default defineComponent ({
 
         onMounted(() => {
             getTableData(),
-            getCountData()
+                getCountData()
         })
         return {
             getImgSrc,
@@ -106,47 +100,56 @@ export default defineComponent ({
 </script>
 
 <style lang="less" scoped>
-.home{
-    .user-info{
+.home {
+    .user-info {
         display: flex;
         border-bottom: 1px solid #ccc;
+
         // align-items: center;
-        .user-image{
+        .user-image {
             margin-left: 30px;
             height: 150px;
             width: 150px;
             border-radius: 50%;
             margin-bottom: 15px;
         }
-        .display-info{
+
+        .display-info {
             margin-left: 60px;
             padding-top: 50px;
         }
     }
-    .login-info{
+
+    .login-info {
         margin-left: 30px;
         margin-top: 15px;
         line-height: 200%;
     }
-    .nums{
+
+    .nums {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+
         .el-card {
             width: 31%;
             margin-bottom: 20px;
+
             .icons {
                 width: 24%
             }
+
             .detail {
                 margin-left: 10px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                .num{
+
+                .num {
                     font-size: 26px;
                 }
-                .txt{
+
+                .txt {
                     color: #999;
                     text-align: center;
                 }
