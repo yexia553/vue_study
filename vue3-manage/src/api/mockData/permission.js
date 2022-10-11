@@ -9,7 +9,7 @@ export default {
             return {
                 menu: [
                     {
-                        path: '/',
+                        path: '/home',
                         name: 'home',
                         label: '首页',
                         icon: 'house',
