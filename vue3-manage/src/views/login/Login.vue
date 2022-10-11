@@ -38,8 +38,7 @@ export default defineComponent({
                 console.log(res.data.menu)
                 store.commit('updateMenus', res.data.menu)
                 store.commit('setMenus', router)
-                console.log('after store commit')
-                console.log(store.state.menus)
+                store.commit('setToken', res.data.token)
                 router.push({
                     name: 'main'
                 })

@@ -19,6 +19,18 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 store.commit('setMenus', router)
 
+router.beforeEach((to, from, next) => {
+    store.commit('getToken')
+    const token = store.state.token
+    if (!token && to.name !== 'login') {
+        next({ name: 'login' })
+    } else if (token && to.name === 'login') {
+        next({ name: 'home' })
+    } else (
+        next()
+    )
+})
+
 app.use(ElementPlus)
 app.use(store)
 app.use(router)

@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import Cookies from "js-cookie"
 
 
 export default createStore({
@@ -6,6 +7,7 @@ export default createStore({
         collapse: true,
         storedMenus: [],
         menus: [],
+        token: '',
     },
     mutations: {
         updateCollapse(state, payload) {
@@ -50,5 +52,16 @@ export default createStore({
             })
             console.log('menuArry:', menuArray)
         },
+        setToken(state, val) {
+            state.token = val
+            Cookies.set('token', val)
+        },
+        clearToken(state) {
+            state.token = ''
+            Cookies.remove('token')
+        },
+        getToken(state) {
+            state.token = state.token || Cookies.get('token')
+        }
     }
 })
