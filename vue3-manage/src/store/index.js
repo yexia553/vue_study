@@ -13,8 +13,9 @@ export default createStore({
         },
         addMenus(state, val) {
             // 将店里过的菜单存储为header中的标签
-            // TODO, 要判断存在与否
-            state.storedMenus.push(val)
+            if (!state.storedMenus.includes(val)) {
+                state.storedMenus.push(val)
+            }
         },
         updateMenus(state, val) {
             state.menus = val
