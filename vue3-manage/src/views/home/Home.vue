@@ -77,13 +77,13 @@ export default defineComponent({
         const { proxy } = getCurrentInstance()
         const getTableData = async () => {
             let res = await proxy.$api.getHomeTableData();
-            console.log(res.data)
             tableData.value = res.data
         }
 
         const getCountData = async () => {
             let res = await proxy.$api.getHomeCountData();
-            countData.value = res.data.countData
+            console.log(res)
+            countData.value = res.data
         }
 
         onMounted(() => {

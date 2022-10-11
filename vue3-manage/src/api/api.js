@@ -22,12 +22,20 @@ export default {
             mock: false
         })
     },
+    // getHomeCountData(params) {
+    //     return request({
+    //         url: '/home/getCountData',
+    //         method: 'get',
+    //         data: params,
+    //         mock: true
+    //     })
+    // },
     getHomeCountData(params) {
         return request({
-            url: '/home/getCountData',
+            url: '/vue/orders',
             method: 'get',
             data: params,
-            mock: true
+            mock: false
         })
     },
     getEchartData(params) {

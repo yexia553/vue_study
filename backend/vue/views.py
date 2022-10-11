@@ -9,3 +9,8 @@ class CoursesViewSet(viewsets.ModelViewSet):
     serializer_class = vue_serializers.CoursesSerializers
     filter_class = vue_filers.CourseFilter
     
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = vue_models.Order.objects.all()
+    serializer_class = vue_serializers.OrderSerializers
+    filter_class = vue_filers.OrderFilter

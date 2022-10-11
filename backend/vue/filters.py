@@ -123,3 +123,18 @@ class CourseFilter(filters.FilterSet):
             "month_buy": NUMBER_LOOKUP,
             "total_buy": NUMBER_LOOKUP,
         }
+
+
+class OrderFilter(filters.FilterSet):
+    """
+    """
+    class Meta:
+        """"""
+
+        model = vue_models.Order
+        fields = {
+            "name": STRING_LOOKUP,
+            "value": NUMBER_LOOKUP,
+            "icon": STRING_LOOKUP,
+            "color": STRING_LOOKUP,
+        }

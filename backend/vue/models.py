@@ -9,3 +9,13 @@ class Courses(models.Model):
     
     def __str__(self):
         return self.name
+
+
+class Order(models.Model):
+    name = models.CharField(max_length=128)
+    value = models.IntegerField()
+    icon = models.CharField(max_length=128)
+    color = models.CharField(max_length=128)
+    
+    def __str__(self):
+        return self.name

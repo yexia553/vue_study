@@ -1,5 +1,5 @@
 export default {
-    getHomeData:() => {
+    getHomeData: () => {
         return {
             tableData: [
                 {
@@ -211,5 +211,5 @@ export default {
                 ]
             }
         }
-        }
+    }
 }
