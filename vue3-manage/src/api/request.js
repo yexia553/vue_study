@@ -16,7 +16,7 @@ service.interceptors.request.use((req) => {
 
 service.interceptors.response.use((res) => {
     // 对请求得到的响应做一些处理
-    if (res.status === 200 ){
+    if (res.status === 200) {
         // 状态码是200表明请求正常，可以返回请求到的数据也可以做一些其他事情
         return res
     } else {

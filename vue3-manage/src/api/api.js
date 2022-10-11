@@ -6,12 +6,20 @@ import request from "./request.js";
 
 
 export default {
+    // getHomeTableData(params) {
+    //     return request({
+    //         url: '/home/getData',
+    //         method: 'get',
+    //         data: params,
+    //         mock: true
+    //     })
+    // },
     getHomeTableData(params) {
         return request({
-            url: '/home/getData',
+            url: 'vue/courses',
             method: 'get',
             data: params,
-            mock: true
+            mock: false
         })
     },
     getHomeCountData(params) {

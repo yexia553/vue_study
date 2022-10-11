@@ -6,22 +6,23 @@
 const env = import.meta.env.MDOE || 'dev'
 
 const envConfig = {
-    dev:{
-        baseApi: 'dev.example.com/api',
+    dev: {
+        // baseApi: 'dev.example.com/api',
+        baseApi: 'http://localhost:8000/api/',
         mockApi: ''
     },
-    test:{
+    test: {
         baseApi: 'test.example.com/api',
         mockApi: ''
     },
-    prod:{
+    prod: {
         baseApi: 'example.com/api',
         mockApi: ''
     }
 }
 
 export default {
-    env, 
+    env,
     mock: true, // 控制使用mock与否的总开关
     ...envConfig[env]
 }

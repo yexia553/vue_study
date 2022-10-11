@@ -17,9 +17,9 @@
             <el-card shadow="hover" style="margin-top:20px;">
                 <el-table :data="tableData" style="width: 100%">
                     <el-table-column prop="name" label="课程"></el-table-column>
-                    <el-table-column prop="todayBuy" label="今日购买"></el-table-column>
-                    <el-table-column prop="monthBuy" label="本月购买"></el-table-column>
-                    <el-table-column prop="totalBuy" label="总购买"></el-table-column>
+                    <el-table-column prop="today_buy" label="今日购买"></el-table-column>
+                    <el-table-column prop="month_buy" label="本月购买"></el-table-column>
+                    <el-table-column prop="total_buy" label="总购买"></el-table-column>
                 </el-table>
             </el-card>
         </el-col>
@@ -77,8 +77,8 @@ export default defineComponent({
         const { proxy } = getCurrentInstance()
         const getTableData = async () => {
             let res = await proxy.$api.getHomeTableData();
-            console.log('res', res)
-            tableData.value = res.data.tableData
+            console.log(res.data)
+            tableData.value = res.data
         }
 
         const getCountData = async () => {
