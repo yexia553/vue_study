@@ -2,6 +2,7 @@ import axios from 'axios'
 import config from './config.js'
 import Cookies from 'js-cookie'
 import { ElMessage } from 'element-plus'
+import store from '../store/index.js'
 
 
 
@@ -32,6 +33,27 @@ service.interceptors.response.use((res) => {
     }
 })
 
+let tokenRefresher = async () => {
+    let now = new Date().getTime()
+    console.log('token refresh now', now)
+    console.log('last refresh time', Cookies.get('last_token_refresh_time'))
+    if (now - Cookies.get('last_token_refresh_time') > 1000 * 60 * 4) {
+        let res = await service({
+            url: '/api/token/refresh/',
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${Cookies.get('access_token')}`
+            },
+            data: {
+                refresh: `${Cookies.get('refresh_token')}`
+            }
+        })
+        if (res.status === 200) {
+            store.commit('setAccessToken', res.data.access)
+        }
+    }
+}
+
 
 function request(options) {
     options.method = options.method || 'get' // 如果没有传入methd这个参数，就默认是get请求
@@ -48,6 +70,8 @@ function request(options) {
 
     // 如果可以从cookie中获取到access_token，就添加到header中
     if (Cookies.get('access_token')) {
+        // 设置token之前先检查是否需要更新token
+        tokenRefresher()
         service.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access_token')}`
     }
 

@@ -9,6 +9,7 @@ export default createStore({
         menus: [],
         access_token: '',
         refresh_token: '',
+        last_token_refresh_time: new Date("October 01, 1975 00:00:00"),
     },
     mutations: {
         updateCollapse(state, payload) {
@@ -74,6 +75,10 @@ export default createStore({
         },
         getRefreshToken(state) {
             state.refresh_token = state.refresh_token || Cookies.get('refresh_token')
+        },
+        updateLastRefreshTime(state) {
+            state.last_token_refresh_time = new Date().getTime()
+            Cookies.set('last_token_refresh_time', state.last_token_refresh_time)
         },
     }
 })

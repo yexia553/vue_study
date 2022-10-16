@@ -70,4 +70,12 @@ export default {
             mock: false
         })
     },
+    refreshToken(params) {
+        return request({
+            url: '/api/token/refresh',
+            method: 'post',
+            data: params,
+            mock: false
+        })
+    }
 }

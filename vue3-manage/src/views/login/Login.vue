@@ -37,6 +37,8 @@ export default defineComponent({
             if (res.status === 200) {
                 store.commit('setAccessToken', res.data.access)
                 store.commit('setRefreshToken', res.data.refresh)
+                store.commit('updateLastRefreshTime')
+                console.log('login refresh time', store.state.last_token_refresh_time)
                 res = await proxy.$api.getAsideMenu({ group: formData.username })
                 store.commit('updateMenus', JSON.parse(res.data[0].menus))
                 store.commit('setMenus', router)

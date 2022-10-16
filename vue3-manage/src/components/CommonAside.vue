@@ -27,13 +27,10 @@
 
 <script>
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 import store from '../store/index.js'
 export default {
     setup() {
         const router = useRouter()
-        // const store = useStore()
-        console.log('common aside store', store)
         // const list = [
         //     {
         //         path: '/user',
