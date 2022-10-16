@@ -16,10 +16,10 @@
 <script>
 import { getCurrentInstance, reactive } from 'vue';
 import { defineComponent } from 'vue-demi';
-import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { ElMessageBox } from 'element-plus';
 import store from '../../store/index.js';
+
 
 
 export default defineComponent({
@@ -34,15 +34,12 @@ export default defineComponent({
 
         let login = async () => {
             let res = await proxy.$api.login(formData)
-            console.log(res)
             if (res.status === 200) {
                 store.commit('setAccessToken', res.data.access)
                 store.commit('setRefreshToken', res.data.refresh)
-                res = await proxy.$api.getAsideMenu()
+                res = await proxy.$api.getAsideMenu({ group: formData.username })
                 store.commit('updateMenus', JSON.parse(res.data[0].menus))
                 store.commit('setMenus', router)
-                console.log('menus', res.data[0].menus)
-                console.log('store', store.state.menus)
                 router.push({
                     name: 'main'
                 })

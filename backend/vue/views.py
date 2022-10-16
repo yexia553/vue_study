@@ -21,12 +21,3 @@ class MenusViewSet(viewsets.ModelViewSet):
     queryset = vue_models.Menus.objects.all()
     serializer_class = vue_serializers.MenusSerializers
     filter_class = vue_filers.MenusFilter
-
-
-class GetMenusView(APIView):
-    def get(self, request, format=None):
-        """
-        Return a list of all users.
-        """
-        usernames = request
-        return usernames
