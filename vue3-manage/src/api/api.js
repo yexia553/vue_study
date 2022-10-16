@@ -32,7 +32,7 @@ export default {
     // },
     getHomeCountData(params) {
         return request({
-            url: '/api//vue/orders/',
+            url: '/api/vue/orders/',
             method: 'get',
             data: params,
             mock: false
@@ -56,7 +56,7 @@ export default {
     // },
     getAsideMenu(params) {
         return request({
-            url: '/api/vue/menus/?group=admin',
+            url: '/api/vue/menus/',
             method: 'get',
             data: params,
             mock: false
