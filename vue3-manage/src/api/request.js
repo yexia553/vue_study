@@ -1,11 +1,14 @@
 import axios from 'axios'
 import config from './config.js'
+import Cookies from 'js-cookie'
 import { ElMessage } from 'element-plus'
 
 
+
 const NETWORK_ERROR = '网络请求错误，请稍后重试...'
+
 const service = axios.create({
-    baseURL: config.baseApi
+    baseURL: config.baseApi,
 })
 
 service.interceptors.request.use((req) => {
@@ -20,7 +23,7 @@ service.interceptors.response.use((res) => {
         // 状态码是200表明请求正常，可以返回请求到的数据也可以做一些其他事情
         return res
     } else {
-        // 状态码不是200说明请求可能出错了
+        // 状态码不是200说明请求可能出错
         // ElMessage.error(NETWORK_ERROR)
         // return Promise.reject(NETWORK_ERROR)
 
@@ -41,6 +44,11 @@ function request(options) {
     let isMock = config.mock
     if (options.mock !== 'undefined') {
         isMock = options.mock
+    }
+
+    // 如果可以从cookie中获取到access_token，就添加到header中
+    if (Cookies.get('access_token')) {
+        service.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access_token')}`
     }
 
     // 如果是prod环境，禁止使用mock api
