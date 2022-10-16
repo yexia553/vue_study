@@ -1,3 +1,4 @@
+from rest_framework.views import APIView
 from rest_framework import viewsets
 import vue.serializers as vue_serializers
 import vue.models as vue_models
@@ -14,3 +15,18 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = vue_models.Order.objects.all()
     serializer_class = vue_serializers.OrderSerializers
     filter_class = vue_filers.OrderFilter
+
+
+class MenusViewSet(viewsets.ModelViewSet):
+    queryset = vue_models.Menus.objects.all()
+    serializer_class = vue_serializers.MenusSerializers
+    filter_class = vue_filers.MenusFilter
+
+
+class GetMenusView(APIView):
+    def get(self, request, format=None):
+        """
+        Return a list of all users.
+        """
+        usernames = request
+        return usernames

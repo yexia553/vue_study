@@ -16,7 +16,7 @@ export default {
     // },
     getHomeTableData(params) {
         return request({
-            url: 'vue/courses',
+            url: '/api/vue/courses/',
             method: 'get',
             data: params,
             mock: false
@@ -32,7 +32,7 @@ export default {
     // },
     getHomeCountData(params) {
         return request({
-            url: '/vue/orders',
+            url: '/api//vue/orders/',
             method: 'get',
             data: params,
             mock: false
@@ -46,12 +46,28 @@ export default {
             mock: true
         })
     },
+    // getAsideMenu(params) {
+    //     return request({
+    //         url: '/home/getAsideMenu',
+    //         method: 'post',
+    //         data: params,
+    //         mock: true
+    //     })
+    // },
     getAsideMenu(params) {
         return request({
-            url: '/home/getAsideMenu',
+            url: '/api/vue/menus/?group=admin',
+            method: 'get',
+            data: params,
+            mock: false
+        })
+    },
+    login(params) {
+        return request({
+            url: '/api/token/',
             method: 'post',
             data: params,
-            mock: true
+            mock: false
         })
-    }
+    },
 }

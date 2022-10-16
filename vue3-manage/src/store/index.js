@@ -7,7 +7,8 @@ export default createStore({
         collapse: true,
         storedMenus: [],
         menus: [],
-        token: '',
+        access_token: '',
+        refresh_token: '',
     },
     mutations: {
         updateCollapse(state, payload) {
@@ -52,16 +53,27 @@ export default createStore({
             })
             console.log('menuArry:', menuArray)
         },
-        setToken(state, val) {
-            state.token = val
-            Cookies.set('token', val)
+        setAccessToken(state, val) {
+            state.access_token = val
+            Cookies.set('access_token', val)
         },
-        clearToken(state) {
-            state.token = ''
-            Cookies.remove('token')
+        clearAccessToken(state) {
+            state.access_token = ''
+            Cookies.remove('access_token')
         },
-        getToken(state) {
-            state.token = state.token || Cookies.get('token')
-        }
+        getAccessToken(state) {
+            state.access_token = state.access_token || Cookies.get('access_token')
+        },
+        setRefreshToken(state, val) {
+            state.refresh_token = val
+            Cookies.set('refresh_token', val)
+        },
+        clearRefreshToken(state) {
+            state.refresh_token = ''
+            Cookies.remove('refresh_token')
+        },
+        getRefreshToken(state) {
+            state.refresh_token = state.refresh_token || Cookies.get('refresh_token')
+        },
     }
 })

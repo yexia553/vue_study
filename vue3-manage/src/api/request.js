@@ -21,8 +21,11 @@ service.interceptors.response.use((res) => {
         return res
     } else {
         // 状态码不是200说明请求可能出错了
-        ElMessage.error(NETWORK_ERROR)
-        return Promise.reject(NETWORK_ERROR)
+        // ElMessage.error(NETWORK_ERROR)
+        // return Promise.reject(NETWORK_ERROR)
+
+        // 这里的封装不完善，直接抛出异常会导致页面不能正常提醒用户，先这样返回，以后修改
+        return res
     }
 })
 

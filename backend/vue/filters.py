@@ -138,3 +138,29 @@ class OrderFilter(filters.FilterSet):
             "icon": STRING_LOOKUP,
             "color": STRING_LOOKUP,
         }
+
+
+class MenusFilter(filters.FilterSet):
+    """
+    """
+    class Meta:
+        """"""
+
+        model = vue_models.Menus
+        fields = {
+            "group": STRING_LOOKUP,
+            "menus": STRING_LOOKUP,
+        }
+
+
+class GetMenusFilter(filters.FilterSet):
+    """
+    """
+    class Meta:
+        """"""
+
+        model = vue_models.Menus
+        fields = {
+            "group": STRING_LOOKUP,
+            "menus": STRING_LOOKUP,
+        }

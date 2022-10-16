@@ -12,3 +12,14 @@ class OrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = vue_models.Order
         fields = "__all__"
+
+
+class MenusSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = vue_models.Menus
+        fields = "__all__"
+
+
+class GetMenusSerializers(serializers.Serializer):
+    group = serializers.ReadOnlyField()
+    menus = serializers.ReadOnlyField()

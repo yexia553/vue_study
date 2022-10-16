@@ -33,12 +33,16 @@ export default defineComponent({
         });
 
         let login = async () => {
-            let res = await proxy.$api.getAsideMenu(formData);
-            if (res.data.message === 'success') {
-                console.log(res.data.menu)
-                store.commit('updateMenus', res.data.menu)
+            let res = await proxy.$api.login(formData)
+            console.log(res)
+            if (res.status === 200) {
+                store.commit('setAccessToken', res.data.access)
+                store.commit('setRefreshToken', res.data.refresh)
+                res = await proxy.$api.getAsideMenu()
+                store.commit('updateMenus', JSON.parse(res.data[0].menus))
                 store.commit('setMenus', router)
-                store.commit('setToken', res.data.token)
+                console.log('menus', res.data[0].menus)
+                console.log('store', store.state.menus)
                 router.push({
                     name: 'main'
                 })
@@ -48,6 +52,23 @@ export default defineComponent({
                     name: 'login'
                 })
             }
+
+
+            // let res = await proxy.$api.getAsideMenu(formData);
+            // if (res.data.message === 'success') {
+            //     console.log(res.data.menu)
+            //     store.commit('updateMenus', res.data.menu)
+            //     store.commit('setMenus', router)
+            //     store.commit('setToken', res.data.token)
+            //     router.push({
+            //         name: 'main'
+            //     })
+            // } else {
+            //     ElMessageBox.alert('账号密码错误，请重试！')
+            //     router.push({
+            //         name: 'login'
+            //     })
+            // }
 
         };
 
