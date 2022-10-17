@@ -3,6 +3,7 @@ import config from './config.js'
 import Cookies from 'js-cookie'
 import { ElMessage } from 'element-plus'
 import store from '../store/index.js'
+import { useRouter } from 'vue-router';
 
 
 
@@ -34,9 +35,8 @@ service.interceptors.response.use((res) => {
 })
 
 let tokenRefresher = async () => {
+    let router = useRouter()
     let now = new Date().getTime()
-    console.log('token refresh now', now)
-    console.log('last refresh time', Cookies.get('last_token_refresh_time'))
     if (now - Cookies.get('last_token_refresh_time') > 1000 * 60 * 4) {
         let res = await service({
             url: '/api/token/refresh/',
@@ -50,6 +50,13 @@ let tokenRefresher = async () => {
         })
         if (res.status === 200) {
             store.commit('setAccessToken', res.data.access)
+        } else if (res.status === 403) {
+            // refresh token过期了，要求重新登录
+            store.commit('clearRefreshToken')
+            store.commit('clearAccessToken')
+            router.push({
+                name: 'login'
+            })
         }
     }
 }

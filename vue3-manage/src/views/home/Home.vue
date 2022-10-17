@@ -82,7 +82,6 @@ export default defineComponent({
 
         const getCountData = async () => {
             let res = await proxy.$api.getHomeCountData();
-            console.log(res)
             countData.value = res.data
         }
 

@@ -52,7 +52,6 @@ export default createStore({
             menuArray.forEach(item => {
                 router.addRoute('main', item)
             })
-            console.log('menuArry:', menuArray)
         },
         setAccessToken(state, val) {
             state.access_token = val
