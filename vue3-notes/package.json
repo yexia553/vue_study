@@ -7,6 +7,8 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "element-plus": "^2.2.18",
+    "less": "^4.1.3",
     "vue": "^3.2.38",
     "vue-router": "^4.1.5"
   },
