@@ -1,12 +1,14 @@
 <template>
-    <el-menu class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" :collapse-transition="false"
-        active-text-color="#ffd04b">
-        <h3>后台管理</h3>
-        <el-menu-item :index="item.path+''" v-for="item in list" :key="item.label">
-            <component class="icons" :is="item.icon"></component>
-            <span>{{item.label}}</span>
-        </el-menu-item>
-    </el-menu>
+    <el-aside>
+        <el-menu class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" :collapse-transition="false"
+            active-text-color="#ffd04b">
+            <h3>后台管理</h3>
+            <el-menu-item :index="item.path + ''" v-for="item in list" :key="item.label">
+                <component class="icons" :is="item.icon"></component>
+                <span>{{ item.label }}</span>
+            </el-menu-item>
+        </el-menu>
+    </el-aside>
 </template>
 
 
