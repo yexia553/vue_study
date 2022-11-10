@@ -3,7 +3,7 @@
         <el-menu class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" :collapse-transition="false"
             active-text-color="#ffd04b">
             <h3>后台管理</h3>
-            <el-menu-item :index="item.path + ''" v-for="item in list" :key="item.label">
+            <el-menu-item :index="item.path + ''" v-for="item in list" :key="item.label" @click="handleClick(item)">
                 <component class="icons" :is="item.icon"></component>
                 <span>{{ item.label }}</span>
             </el-menu-item>
@@ -13,27 +13,35 @@
 
 
 <script>
+import { useRouter } from 'vue-router'
 export default {
     setup() {
         const list = [
             {
-                path: '/user',
-                name: 'user',
-                label: '用户管理',
-                icon: 'user',
-                url: '/user'
+                path: '/home',
+                name: 'home',
+                label: '首页',
+                icon: 'home',
+                url: '/home'
             },
             {
-                label: '其它',
-                name: 'other',
-                icon: 'location',
                 path: '/other',
+                name: 'other',
+                label: '其它',
+                icon: 'location',
                 url: 'other'
             },
         ];
+        const router = useRouter()
+        const handleClick = (item) => {
+            router.push({
+                name: item.name
+            });
+        }
 
         return {
             list,
+            handleClick,
         }
     }
 }
