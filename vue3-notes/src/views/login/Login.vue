@@ -17,22 +17,24 @@
 import { getCurrentInstance, reactive } from 'vue';
 import { defineComponent } from 'vue-demi';
 import { useRouter } from 'vue-router';
-import { ElMessageBox } from 'element-plus';
+import { ElMessageBox } from 'element-plus';  //这是用来在账号密码错误时弹窗提示的
 import store from '../../store/index.js';
 
 
 
 export default defineComponent({
     setup() {
-        const { proxy } = getCurrentInstance()
+        const { proxy } = getCurrentInstance() // 注意这里，下面login函数会用到
         const router = useRouter()
+        // vue3中获取表单数据需要使用reactive
         const formData = reactive({
             username: '',
             password: '',
         });
 
+        // 使用异步的方式请求api
         let login = async () => {
-            let res = await proxy.$api.login(formData)
+            let res = await proxy.$api.login(formData) // 通过$api来调用login
             if (res.status === 200) {
                 store.commit('setAccessToken', res.data.access)
                 store.commit('setRefreshToken', res.data.refresh)

@@ -63,7 +63,7 @@ let tokenRefresher = async () => {
 
 
 function request(options) {
-    options.method = options.method || 'get' // 如果没有传入methd这个参数，就默认是get请求
+    options.method = options.method || 'get' // 如果没有传入method这个参数，就默认是get请求
     if (options.method.toLowerCase() === 'get') {
         // console.log(options)
         options.params = options.data
